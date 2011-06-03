@@ -1,0 +1,18 @@
+// DServer.idl : IDL source for DServer
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (DServer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(424E6929-336C-49DF-8ED4-C3D37314C2F6),
+	version(1.0),
+	helpstring("DServer 1.0 Type Library")
+]
+library DServerLib
+{
+	importlib("stdole2.tlb");
+};

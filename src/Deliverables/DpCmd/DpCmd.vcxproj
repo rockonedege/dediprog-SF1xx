@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{92BB07D4-BAD6-4683-A61C-9DB617C7B69A}</ProjectGuid>
+    <RootNamespace>DpCmd</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreBuildEventUseInBuild>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PostBuildEventUseInBuild>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)dedi-bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PreBuildEventUseInBuild>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PostBuildEventUseInBuild>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>copy config files</Message>
+      <Command>xcopy "$(SolutionDir)DediProSetup\3rd\bin\STTubeDevice203.dll" "$(OutDir)" /s/y/q
+xcopy "$(SolutionDir)DediProSetup\Config\*"  "%allusersprofile%\dediprog\"  /s/y/q
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\DediPro\Core\Config;..\DediPro\Core\Utils;..\DediPro\Core\Chip;..\DediPro\3rd\rapidxml;..\DediPro;..\DediPro\Core\USB;..\DediPro\Core\USB\Tddk203\inc\;..\DediPro\3rd\File;..\DediPro\3rd\logger;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEDI_CONSOLE;_BIND_TO_CURRENT_VCLIBS_VERSION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>STTubeDevice203.lib;usbd.lib;Setupapi.lib;hid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)DediProSetup\3rd\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Manifest>
+      <VerboseOutput>true</VerboseOutput>
+    </Manifest>
+    <PostBuildEvent>
+      <Message>xcopy</Message>
+      <Command>xcopy "$(SolutionDir)DediProSetup\3rd\bin\*.dll" "$(OutDir)" /q/y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>copy config files</Message>
+      <Command>xcopy "$(SolutionDir)DediProSetup\3rd\bin\STTubeDevice203.dll" "$(OutDir)" /s/y/q
+xcopy "$(SolutionDir)DediProSetup\Config\*"  "%allusersprofile%\dediprog\"  /s/y/q
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\DediPro\Core\Config;..\DediPro\Core\Utils;..\DediPro\Core\Chip;..\DediPro\3rd\rapidxml;..\DediPro;..\DediPro\Core\USB;..\DediPro\Core\USB\Tddk203\inc\;..\DediPro\3rd\File;..\DediPro\3rd\logger;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEDI_CONSOLE;_BIND_TO_CURRENT_VCLIBS_VERSION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>STTubeDevice203.lib;usbd.lib;Setupapi.lib;hid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)DediProSetup\3rd\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Message>xcopy</Message>
+      <Command>"$(SolutionDir)DediProSetup\3rd\bin\upx.exe" "$(TargetPath)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DpCmd.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\DediPro\project.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Chip\25xFxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\25xFxxA.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\25xFxxB.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\A25Lxxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\AT25FSxxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\AT25Fxxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\AT26xxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\AT45DBxxxB.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\AT45DBxxxD.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\EN25Xxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\F25Lxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\LE25FWxxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\M25PExx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\M25Pxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\M45PExx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\MCF.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Chip\MX25Lxxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\PM25LVxxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\S25FLxxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\S33x.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\TS25Lxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\W25Bxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\W25Pxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\W25Xxx.cpp" />
+    <ClCompile Include="..\DediPro\Core\USB\USBDevice.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\Eeprom.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\FirmwareFile.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\FlashCommand.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Chip\FlashIdentifier.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Chip\ProgBoard.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\SerialFlash.cpp" />
+    <ClCompile Include="..\DediPro\Core\Chip\SerialFlashInfoEx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Chip\VppVccPower.cpp" />
+    <ClCompile Include="..\DediPro\Core\Utils\AddrRoundup.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Utils\ModuleVersion.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Utils\util.cpp" />
+    <ClCompile Include="..\DediPro\Core\Utils\VersionInfo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\Core\Config\PreferenceEx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\DediPro\3rd\File\FileIO.cpp" />
+    <ClCompile Include="..\DediPro\3rd\File\IntelHexFile.cpp" />
+    <ClCompile Include="..\DediPro\3rd\File\MotorolaFile.cpp" />
+    <ClCompile Include="..\DediPro\3rd\Logger\Logger.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DpCmd.h" />
+    <ClInclude Include="Console.h" />
+    <ClInclude Include="DediCmd.h" />
+    <ClInclude Include="..\DediPro\FlashCardSettings.h" />
+    <ClInclude Include="..\DediPro\project.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="..\DediPro\VerInfo.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\25xFxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\25xFxxA.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\25xFxxB.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\A25Lxxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\AT25FSxxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\AT25Fxxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\AT26xxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\AT45DBxxxB.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\AT45DBxxxD.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\DediInludes.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\EN25Xxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\F25Lxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\LE25FWxxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\M25PExx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\M25Pxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\M45PExx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\Macro.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\MCF.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\memory_id.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\MX25Lxxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\PM25LVxxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\S25FLxxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\S33x.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\TS25Lxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\W25Bxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\W25Pxx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\W25Xxx.h" />
+    <ClInclude Include="..\DediPro\Core\USB\USBDevice.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\DrvInstallDLL.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\hidpi.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\hidsdi.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\hidusage.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\STTubeDeviceErr203.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\STTubeDeviceFun203.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\STTubeDeviceTyp203.h" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\USB100.H" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\USBDI.H" />
+    <ClInclude Include="..\DediPro\Core\USB\Tddk203\inc\USBIOCTL.H" />
+    <ClInclude Include="..\DediPro\Core\Chip\Eeprom.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\FirmwareFile.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\FlashCommand.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\FlashIdentifier.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\ProgBoard.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\SerialFlash.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\SerialFlashInfoEx.h" />
+    <ClInclude Include="..\DediPro\Core\Chip\VppVccPower.h" />
+    <ClInclude Include="..\DediPro\Core\Utils\AddrRoundup.h" />
+    <ClInclude Include="..\DediPro\Core\Utils\ModuleVersion.h" />
+    <ClInclude Include="..\DediPro\Core\Utils\numeric_conversion.h" />
+    <ClInclude Include="..\DediPro\Core\Utils\util.h" />
+    <ClInclude Include="..\DediPro\Core\Utils\VersionInfo.h" />
+    <ClInclude Include="..\DediPro\Core\Config\DediContext.h" />
+    <ClInclude Include="..\DediPro\Core\Config\PreferenceEx.h" />
+    <ClInclude Include="..\DediPro\3rd\File\FileIO.h" />
+    <ClInclude Include="..\DediPro\3rd\File\IntelHexFile.h" />
+    <ClInclude Include="..\DediPro\3rd\File\MotorolaFile.h" />
+    <ClInclude Include="..\DediPro\3rd\Logger\Logger.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DediCmd.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
