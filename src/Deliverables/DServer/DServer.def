@@ -1,0 +1,10 @@
+; DServer.def : Declares the module parameters.
+
+LIBRARY      "DServer.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+	DllInstall		PRIVATE

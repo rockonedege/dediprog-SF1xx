@@ -1,0 +1,81 @@
+;; STTub203.inf
+
+[Version]
+Signature="$chicago$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+provider=%ProviderName%
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%MfgName%=Mfg0
+
+[Mfg0]
+%USB\VID_0483&PID_9912_DeviceDesc%=STTub203.Device, USB\VID_0483&PID_9912
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+[DestinationDirs]
+STTub203.Files.Ext      = 10,System32\Drivers
+STTub203.Files.Ext.NTx86= 10,System32\Drivers
+
+[SourceDisksNames]
+1="ST Tube Driver 2.0.3 disk",,,
+
+[SourceDisksFiles]
+STTub203.sys=1,
+
+[SourceDisksFiles.NTx86]
+STTub203.sys=1,
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; WINDOWS 98
+
+[STTub203.Device]
+CopyFiles=STTub203.Files.Ext
+AddReg=STTub203.AddReg, STTub203.AddLicences
+
+[STTub203.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,STTub203.sys
+HKR, "Parameters", "BreakOnEntry", FLG_ADDREG_TYPE_DWORD, 1
+
+[STTub203.Files.Ext]
+STTub203.sys
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; WINDOWS 2000
+
+[STTub203.Device.NTx86]
+CopyFiles=STTub203.Files.Ext.NTx86
+
+[STTub203.Files.Ext.NTx86]
+STTub203.sys
+
+[STTub203.Device.NTx86.Services]
+Addservice = STTub203, 0x00000002, STTub203.AddService
+
+[STTub203.AddService]
+DisplayName    = %SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\STTub203.sys
+;LoadOrderGroup = Base
+AddReg=STTub203.AddLicences
+
+[STTub203.AddLicences]
+; LICENCE INFO
+; Sample for ST92163 Demoboard
+; HKR,86147388C206060C,"{4B576E02-3C79-464b-8586-70E80E570D92}",, ""
+
+;---------------------------------------------------------------;
+
+[Strings]
+ProviderName="STMicroelectronics"
+MfgName="STMicroelectronics"
+USB\VID_0483&PID_9912_DeviceDesc="STMicro Tubedevice"
+SvcDesc="USB Driver for Tube device v2.0.3"

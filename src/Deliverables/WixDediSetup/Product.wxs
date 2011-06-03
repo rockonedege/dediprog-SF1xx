@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="{7351FE31-1F26-4C7F-B083-1ED23C29177D}"
+           Codepage="1252" Language="1033"
+           Manufacturer="Dediprog Inc."
+           Name="DediPro Programmer"
+           UpgradeCode="{04858D9D-202B-4570-863C-AF433A71BB6F}"
+           Version="4.5.74">
+    <Package InstallPrivileges="elevated"
+             Id ="*" Compressed="yes"
+             InstallerVersion="200"
+             Languages="1033"
+             Manufacturer="Dediprog Inc."
+             Description="DediPro Programmer Pro (Ver 4.5.74.4041)"
+             Platform="x86"  />
+    <Media Id="1" Cabinet="WixDediSetup.cab" EmbedCab="yes" />
+
+    <!-- Step 1: Define the directory structure -->
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="DediprogInc" Name="DediprogInc">
+          <Directory Id="APPLICATIONROOTDIRECTORY" Name="Dedipro">
+            <Directory Id="USB_Driver" Name="USB Driver" />
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="CommonAppDataFolder" Name="AllUser's Application Data Folder">
+        <!-- TFIT files -->
+        <Directory Id="CommonDediprogFolder" Name="Dediprog">
+          <Directory Id="FirmwareFolder" Name="firmware"/>
+        </Directory>
+      </Directory>
+
+      <Directory Id="AppDataFolder" Name="User's Application Data Folder">
+        <Directory Id="PersonalDediprogFolder" Name="Dediprog"/>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="DesktopFolder" />
+
+      <Directory Id="ProgramMenuFolder" Name="PMenu">
+        <Directory Id="ProgramMenuDediprogFolder" Name="DediprogInc" />
+      </Directory>
+    </Directory>
+
+    <!-- Step 2: Add files to your installer package -->
+
+    <!-- desktop shortcuts -->
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcuts" Guid="{7DF20A4D-F397-476b-97B6-29DFA60A89D5}">
+        <Shortcut Id="DpcmdShortcutOnDesktop"
+                  Target="[APPLICATIONROOTDIRECTORY]dpcmd.bat"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                  Name="Dpcmd"
+                  Description="Dediprog SFxxx Command Line Tool"
+                  Icon="cmd.ico" IconIndex="0" />
+        <Shortcut Id="DediproShortcutOnDesktop"
+                  Target="[APPLICATIONROOTDIRECTORY]dedipro.exe"
+                  Name="DediPro"
+                  Description="Dediprog SFxxx GUI Tool"
+                  Icon="dedipro.ico" IconIndex="0" />
+        <Shortcut Id="HelpShortcutOnDesktop"
+                  Target="[APPLICATIONROOTDIRECTORY]help.pdf"
+                  Name="Dediprog Help"
+                  Description="Dediprog SFxxx Manual"
+                  Icon="help.ico" IconIndex="0"  />
+        <RegistryValue Root='HKCU' Key='SOFTWARE\Dediprog\Dedipro'  Name="DesktopShortcuts" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- program menu shortcuts -->
+    <DirectoryRef Id="ProgramMenuDediprogFolder">
+      <Component Id="ProgramMenuShortcuts" Guid="{C3A4A907-1852-477d-BB5F-4EFCEF9706FE}">
+        <Shortcut Id="DpcmdShortcutInMenu"
+                  Target="[APPLICATIONROOTDIRECTORY]dpcmd.bat"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                  Description="Dediprog SFxxx Command Line Tool"
+                  Name="Dpcmd" Icon="cmd.ico" IconIndex="0" />
+        <Shortcut Id="DediproShortcutInMenu"
+                  Target="[APPLICATIONROOTDIRECTORY]dedipro.exe"
+                  Description="Dediprog SFxxx GUI Tool"
+                  Name="Dedipro"
+                  Icon="dedipro.ico" IconIndex="0" />
+        <Shortcut Id="HelpShortcutInMenu"
+                  Target="[APPLICATIONROOTDIRECTORY]help.pdf"
+                  Description="Dediprog SFxxx Manual"
+                  Name="Dediprog Help"
+                  Icon="help.ico" IconIndex="0"  />
+        <RegistryValue Root="HKCU" 
+                       Key="SOFTWARE\Dediprog\Dedipro" 
+                       Name="MenuShortcuts" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes"/>
+        <RemoveFolder Id="ProgramMenuDediprogFolder" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- Dedipro outputs -->
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="DediproOutputs" Guid="{0A437B2B-A08F-2624-EB01-FC403DC521B2}">
+        <File Id="DediPro" Name="dedipro.exe"  DiskId="1" Source="..\dedi-bin\dedipro.exe" />
+        <!--File Id="DediProRibbon" Name="DediProRibbon.exe"  DiskId="1" Source="..\dedi-bin\DediProRibbon.exe" / -->
+        <RemoveFolder Id="DediprogInc" On="uninstall" />
+      </Component>
+
+      <!-- DpCmd outputs -->
+      <Component Id="DpCmdOutputs" Guid="{9B4718AD-0D67-4945-A957-44AACF4E4068}">
+        <File Id="dpbat" Name="Dpcmd.bat"  DiskId="1" Source="..\DediProSetup\Dpcmd.bat" />
+        <File Id="dpcmd" Name="dpcmd.exe"  DiskId="1" Source="..\dedi-bin\dpcmd.exe" />
+      </Component>
+
+      <!-- documenation -->
+      <Component Id="Documenation" Guid="{4D57C4D6-F68E-449c-87A0-9672B76E2065}">
+        <File Id="helpfile" Name="help.pdf"  DiskId="1" Source="..\DediProSetup\doc\help.pdf" />
+        
+        <File Id="MCF5213" Name="MCF5213.pdf"  DiskId="1" Source="..\DediProSetup\doc\MCF5213.pdf" />
+        <File Id="MCF5221x" Name="MCF5221x.pdf"  DiskId="1" Source="..\DediProSetup\doc\MCF5221x.pdf" />
+        <File Id="MCF5223x" Name="MCF5223x.pdf"  DiskId="1" Source="..\DediProSetup\doc\MCF5223x.pdf" />
+      </Component>
+
+      <!-- 3rd dependencies-->
+      <Component Id="Dependencies" Guid="{5AB483CD-0205-49d5-83C4-A4A19D57D103}">
+        <!-- USB driver -->
+        <File Id="STTubeDevice203" Name="STTubeDevice203.dll"  DiskId="1" Source="..\DediProSetup\3rd\bin\STTubeDevice203.dll" />
+
+        <!-- mfc -->
+        <File Id="mfc100u.dll" Name="mfc100u.dll"  DiskId="1" Source="..\DediProSetup\vc_redist\x86\mfc100u.dll" />
+
+        <!-- crt -->
+        <File Id="msvcp100.dll" Name="msvcp100.dll"  DiskId="1" Source="..\DediProSetup\vc_redist\x86\msvcp100.dll" />
+        <File Id="msvcr100.dll" Name="msvcr100.dll"  DiskId="1" Source="..\DediProSetup\vc_redist\x86\msvcr100.dll" />
+
+        <RemoveFolder Id="RemoveCommonDediproFolder" Directory="CommonDediprogFolder" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+
+
+    <!-- USB driver -->
+    <DirectoryRef Id="USB_Driver">
+      <Component Id="USB_Driver" Guid="{EE044E84-D803-05E3-93CC-53649B1DA6C5}">
+        <File Id="dediprog_inf" Name="dediprog.inf" KeyPath="yes" DiskId="1" Source="..\DediProSetup\USB Driver\dediprog.inf" />
+        <File Id="STTub203_sys" Name="STTub203.sys"  DiskId="1" Source="..\DediProSetup\USB Driver\STTub203.sys" />
+      </Component>
+
+    </DirectoryRef>
+
+
+    <!-- TFIT files -->
+    <DirectoryRef Id="CommonDediprogFolder" >
+      <Component Id="PerMachineFiles" Guid="{6785F307-E866-15CA-433C-E583AA87EFA7}">
+        <File Id="ChipInfoDb" Name="ChipInfoDb.dedicfg"  DiskId="1" Source="..\DediProSetup\Config\ChipInfoDb.dedicfg" KeyPath="yes"/>
+        <File Id="DediPreference" Name="DediPreference.xml"  DiskId="1" Source="..\DediProSetup\Config\DediPreference.xml" />
+	
+        <!-- file list starts ... -->
+        <File Id="TFIT_AMIC_A25L80P_0x100000" Name="TFIT_AMIC_A25L80P_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_AMIC_A25L80P_0x100000.bin" />
+        <File Id="TFIT_ATMEL_AT25DF021_0x40000" Name="TFIT_ATMEL_AT25DF021_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT25DF021_0x40000.bin" />
+        <File Id="TFIT_ATMEL_AT25DF161_0x200000" Name="TFIT_ATMEL_AT25DF161_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT25DF161_0x200000.bin" />
+        <File Id="TFIT_ATMEL_AT25DF321A_0x400000" Name="TFIT_ATMEL_AT25DF321A_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT25DF321A_0x400000.bin" />
+        <File Id="TFIT_ATMEL_AT25DF321_0x400000" Name="TFIT_ATMEL_AT25DF321_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT25DF321_0x400000.bin" />
+        <File Id="TFIT_ATMEL_AT25DF641_0x800000" Name="TFIT_ATMEL_AT25DF641_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT25DF641_0x800000.bin" />
+        <File Id="TFIT_ATMEL_AT25FS010_0x20000" Name="TFIT_ATMEL_AT25FS010_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT25FS010_0x20000.bin" />
+        <File Id="TFIT_ATMEL_AT26DF081A_0x100000" Name="TFIT_ATMEL_AT26DF081A_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT26DF081A_0x100000.bin" />
+        <File Id="TFIT_ATMEL_AT26F004_0x80000" Name="TFIT_ATMEL_AT26F004_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ATMEL_AT26F004_0x80000.bin" />
+        <File Id="TFIT_EON_EN25B32_0x400000" Name="TFIT_EON_EN25B32_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25B32_0x400000.bin" />
+        <File Id="TFIT_EON_EN25B64_0x800000" Name="TFIT_EON_EN25B64_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25B64_0x800000.bin" />
+        <File Id="TFIT_EON_EN25D16_0x200000" Name="TFIT_EON_EN25D16_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25D16_0x200000.bin" />
+        <File Id="TFIT_EON_EN25F05_0x10000" Name="TFIT_EON_EN25F05_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25F05_0x10000.bin" />
+        <File Id="TFIT_EON_EN25F10_0x20000" Name="TFIT_EON_EN25F10_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25F10_0x20000.bin" />
+        <File Id="TFIT_EON_EN25F16_0x200000" Name="TFIT_EON_EN25F16_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25F16_0x200000.bin" />
+        <File Id="TFIT_EON_EN25F20_0x40000" Name="TFIT_EON_EN25F20_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25F20_0x40000.bin" />
+        <File Id="TFIT_EON_EN25F40_0x80000" Name="TFIT_EON_EN25F40_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25F40_0x80000.bin" />
+        <File Id="TFIT_EON_EN25F80_0x100000" Name="TFIT_EON_EN25F80_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25F80_0x100000.bin" />
+        <File Id="TFIT_EON_EN25LF05_0x10000" Name="TFIT_EON_EN25LF05_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25LF05_0x10000.bin" />
+        <File Id="TFIT_EON_EN25LF10_0x20000" Name="TFIT_EON_EN25LF10_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25LF10_0x20000.bin" />
+        <File Id="TFIT_EON_EN25LF20_0x40000" Name="TFIT_EON_EN25LF20_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25LF20_0x40000.bin" />
+        <File Id="TFIT_EON_EN25LF40_0x80000" Name="TFIT_EON_EN25LF40_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25LF40_0x80000.bin" />
+        <File Id="TFIT_EON_EN25P05_0x10000" Name="TFIT_EON_EN25P05_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P05_0x10000.bin" />
+        <File Id="TFIT_EON_EN25P10_0x20000" Name="TFIT_EON_EN25P10_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P10_0x20000.bin" />
+        <File Id="TFIT_EON_EN25P16_0x200000" Name="TFIT_EON_EN25P16_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P16_0x200000.bin" />
+        <File Id="TFIT_EON_EN25P20_0x40000" Name="TFIT_EON_EN25P20_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P20_0x40000.bin" />
+        <File Id="TFIT_EON_EN25P32_0x400000" Name="TFIT_EON_EN25P32_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P32_0x400000.bin" />
+        <File Id="TFIT_EON_EN25P40_0x80000" Name="TFIT_EON_EN25P40_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P40_0x80000.bin" />
+        <File Id="TFIT_EON_EN25P64_0x800000" Name="TFIT_EON_EN25P64_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P64_0x800000.bin" />
+        <File Id="TFIT_EON_EN25P80_0x100000" Name="TFIT_EON_EN25P80_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_EON_EN25P80_0x100000.bin" />
+        <File Id="TFIT_ESMT_F25L004A_0x80000" Name="TFIT_ESMT_F25L004A_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ESMT_F25L004A_0x80000.bin" />
+        <File Id="TFIT_ESMT_F25L008A_0x100000" Name="TFIT_ESMT_F25L008A_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_ESMT_F25L008A_0x100000.bin" />
+        <File Id="TFIT_MXIC_MX25L1005_0x20000" Name="TFIT_MXIC_MX25L1005_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L1005_0x20000.bin" />
+        <File Id="TFIT_MXIC_MX25L12805D_0x1000000" Name="TFIT_MXIC_MX25L12805D_0x1000000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L12805D_0x1000000.bin" />
+        <File Id="TFIT_MXIC_MX25L1605D_0x200000" Name="TFIT_MXIC_MX25L1605D_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L1605D_0x200000.bin" />
+        <File Id="TFIT_MXIC_MX25L1635D_0x200000" Name="TFIT_MXIC_MX25L1635D_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L1635D_0x200000.bin" />
+        <File Id="TFIT_MXIC_MX25L2005_0x40000" Name="TFIT_MXIC_MX25L2005_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L2005_0x40000.bin" />
+        <File Id="TFIT_MXIC_MX25L3205D_0x400000" Name="TFIT_MXIC_MX25L3205D_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L3205D_0x400000.bin" />
+        <File Id="TFIT_MXIC_MX25L3235D_0x400000" Name="TFIT_MXIC_MX25L3235D_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L3235D_0x400000.bin" />
+        <File Id="TFIT_MXIC_MX25L3237D_0x400000" Name="TFIT_MXIC_MX25L3237D_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L3237D_0x400000.bin" />
+        <File Id="TFIT_MXIC_MX25L4005A_0x80000" Name="TFIT_MXIC_MX25L4005A_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L4005A_0x80000.bin" />
+        <File Id="TFIT_MXIC_MX25L512_0x10000" Name="TFIT_MXIC_MX25L512_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L512_0x10000.bin" />
+        <File Id="TFIT_MXIC_MX25L6405D_0x800000" Name="TFIT_MXIC_MX25L6405D_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L6405D_0x800000.bin" />
+        <File Id="TFIT_MXIC_MX25L8005_0x100000" Name="TFIT_MXIC_MX25L8005_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25L8005_0x100000.bin" />
+        <File Id="TFIT_MXIC_MX25V4005_0x80000" Name="TFIT_MXIC_MX25V4005_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25V4005_0x80000.bin" />
+        <File Id="TFIT_MXIC_MX25V512_0x10000" Name="TFIT_MXIC_MX25V512_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25V512_0x10000.bin" />
+        <File Id="TFIT_MXIC_MX25V8005_0x100000" Name="TFIT_MXIC_MX25V8005_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_MXIC_MX25V8005_0x100000.bin" />
+        <File Id="TFIT_Numonyx_M25P05A_0x10000" Name="TFIT_Numonyx_M25P05A_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P05A_0x10000.bin" />
+        <File Id="TFIT_Numonyx_M25P10A_0x20000" Name="TFIT_Numonyx_M25P10A_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P10A_0x20000.bin" />
+        <File Id="TFIT_Numonyx_M25P128_VPP_0x1000000" Name="TFIT_Numonyx_M25P128(VPP)_0x1000000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P128(VPP)_0x1000000.bin" />
+        <File Id="TFIT_Numonyx_M25P16_VPP_0x200000" Name="TFIT_Numonyx_M25P16(VPP)_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P16(VPP)_0x200000.bin" />
+        <File Id="TFIT_Numonyx_M25P16_0x200000" Name="TFIT_Numonyx_M25P16_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P16_0x200000.bin" />
+        <File Id="TFIT_Numonyx_M25P20_0x40000" Name="TFIT_Numonyx_M25P20_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P20_0x40000.bin" />
+        <File Id="TFIT_Numonyx_M25P32_VPP_0x400000" Name="TFIT_Numonyx_M25P32(VPP)_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P32(VPP)_0x400000.bin" />
+        <File Id="TFIT_Numonyx_M25P32_0x400000" Name="TFIT_Numonyx_M25P32_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P32_0x400000.bin" />
+        <File Id="TFIT_Numonyx_M25P64_VPP_0x800000" Name="TFIT_Numonyx_M25P64(VPP)_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25P64(VPP)_0x800000.bin" />
+        <File Id="TFIT_Numonyx_M25PE10_before_July_2007_0x20000" Name="TFIT_Numonyx_M25PE10(before July 2007)_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25PE10(before July 2007)_0x20000.bin" />
+        <File Id="TFIT_Numonyx_M25PE10_since_july_2007__0x20000" Name="TFIT_Numonyx_M25PE10(since july 2007) _0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25PE10(since july 2007) _0x20000.bin" />
+        <File Id="TFIT_Numonyx_M25PE20_since_july_2007_0x40000" Name="TFIT_Numonyx_M25PE20(since july 2007)_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25PE20(since july 2007)_0x40000.bin" />
+        <File Id="TFIT_Numonyx_M25PX32_0x400000" Name="TFIT_Numonyx_M25PX32_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25PX32_0x400000.bin" />
+        <File Id="TFIT_Numonyx_M25PX64_0x800000" Name="TFIT_Numonyx_M25PX64_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M25PX64_0x800000.bin" />
+        <File Id="TFIT_Numonyx_M45PE10_0x20000" Name="TFIT_Numonyx_M45PE10_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M45PE10_0x20000.bin" />
+        <File Id="TFIT_Numonyx_M45PE20_before_july_2007_0x40000" Name="TFIT_Numonyx_M45PE20(before july 2007)_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M45PE20(before july 2007)_0x40000.bin" />
+        <File Id="TFIT_Numonyx_M45PE20_0x40000" Name="TFIT_Numonyx_M45PE20_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M45PE20_0x40000.bin" />
+        <File Id="TFIT_Numonyx_M45PE40_0x80000" Name="TFIT_Numonyx_M45PE40_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M45PE40_0x80000.bin" />
+        <File Id="TFIT_Numonyx_M45PE80_0x100000" Name="TFIT_Numonyx_M45PE80_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Numonyx_M45PE80_0x100000.bin" />
+        <File Id="TFIT_PMC_PM25LV010_0x20000" Name="TFIT_PMC_PM25LV010_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_PMC_PM25LV010_0x20000.bin" />
+        <File Id="TFIT_PMC_PM25LV016B_0x200000" Name="TFIT_PMC_PM25LV016B_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_PMC_PM25LV016B_0x200000.bin" />
+        <File Id="TFIT_PMC_PM25LV020_0x40000" Name="TFIT_PMC_PM25LV020_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_PMC_PM25LV020_0x40000.bin" />
+        <File Id="TFIT_PMC_PM25LV040_0x80000" Name="TFIT_PMC_PM25LV040_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_PMC_PM25LV040_0x80000.bin" />
+        <File Id="TFIT_PMC_PM25LV080B_0x100000" Name="TFIT_PMC_PM25LV080B_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_PMC_PM25LV080B_0x100000.bin" />
+        <File Id="TFIT_PMC_PM25LV512A_0x10000" Name="TFIT_PMC_PM25LV512A_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_PMC_PM25LV512A_0x10000.bin" />
+        <File Id="TFIT_PMC_PM25LV512_0x10000" Name="TFIT_PMC_PM25LV512_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_PMC_PM25LV512_0x10000.bin" />
+        <File Id="TFIT_Spansion_S25FL004A_0x80000" Name="TFIT_Spansion_S25FL004A_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Spansion_S25FL004A_0x80000.bin" />
+        <File Id="TFIT_Spansion_S25FL008A_0x100000" Name="TFIT_Spansion_S25FL008A_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Spansion_S25FL008A_0x100000.bin" />
+        <File Id="TFIT_Spansion_S25FL016A_0x200000" Name="TFIT_Spansion_S25FL016A_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Spansion_S25FL016A_0x200000.bin" />
+        <File Id="TFIT_Spansion_S25FL032A_0x400000" Name="TFIT_Spansion_S25FL032A_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Spansion_S25FL032A_0x400000.bin" />
+        <File Id="TFIT_Spansion_S25FL064A_0x800000" Name="TFIT_Spansion_S25FL064A_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Spansion_S25FL064A_0x800000.bin" />
+        <File Id="TFIT_Spansion_S25FL128P_0x1000000" Name="TFIT_Spansion_S25FL128P_0x1000000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Spansion_S25FL128P_0x1000000.bin" />
+        <File Id="TFIT_SST_SST25VF010A_0x20000" Name="TFIT_SST_SST25VF010A_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF010A_0x20000.bin" />
+        <File Id="TFIT_SST_SST25VF010_0x20000" Name="TFIT_SST_SST25VF010_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF010_0x20000.bin" />
+        <File Id="TFIT_SST_SST25VF016B_0x200000" Name="TFIT_SST_SST25VF016B_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF016B_0x200000.bin" />
+        <File Id="TFIT_SST_SST25VF016_0x200000" Name="TFIT_SST_SST25VF016_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF016_0x200000.bin" />
+        <File Id="TFIT_SST_SST25VF032B_0x400000" Name="TFIT_SST_SST25VF032B_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF032B_0x400000.bin" />
+        <File Id="TFIT_SST_SST25VF032_0x400000" Name="TFIT_SST_SST25VF032_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF032_0x400000.bin" />
+        <File Id="TFIT_SST_SST25VF040B_0x80000" Name="TFIT_SST_SST25VF040B_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF040B_0x80000.bin" />
+        <File Id="TFIT_SST_SST25VF080B_0x100000" Name="TFIT_SST_SST25VF080B_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF080B_0x100000.bin" />
+        <File Id="TFIT_SST_SST25VF512A_0x10000" Name="TFIT_SST_SST25VF512A_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF512A_0x10000.bin" />
+        <File Id="TFIT_SST_SST25VF512_0x10000" Name="TFIT_SST_SST25VF512_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25VF512_0x10000.bin" />
+        <File Id="TFIT_SST_SST25WF010_0x20000" Name="TFIT_SST_SST25WF010_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25WF010_0x20000.bin" />
+        <File Id="TFIT_SST_SST25WF020_0x40000" Name="TFIT_SST_SST25WF020_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25WF020_0x40000.bin" />
+        <File Id="TFIT_SST_SST25WF040_0x80000" Name="TFIT_SST_SST25WF040_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25WF040_0x80000.bin" />
+        <File Id="TFIT_SST_SST25WF080_0x100000" Name="TFIT_SST_SST25WF080_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25WF080_0x100000.bin" />
+        <File Id="TFIT_SST_SST25WF512_0x10000" Name="TFIT_SST_SST25WF512_0x10000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_SST_SST25WF512_0x10000.bin" />
+        <File Id="TFIT_Winbond_W25Q16_0x200000" Name="TFIT_Winbond_W25Q16_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25Q16_0x200000.bin" />
+        <File Id="TFIT_Winbond_W25X10A_0x20000" Name="TFIT_Winbond_W25X10A_0x20000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X10A_0x20000.bin" />
+        <File Id="TFIT_Winbond_W25X16_0x200000" Name="TFIT_Winbond_W25X16_0x200000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X16_0x200000.bin" />
+        <File Id="TFIT_Winbond_W25X20A_0x40000" Name="TFIT_Winbond_W25X20A_0x40000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X20A_0x40000.bin" />
+        <File Id="TFIT_Winbond_W25X32A_0x400000" Name="TFIT_Winbond_W25X32A_0x400000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X32A_0x400000.bin" />
+        <File Id="TFIT_Winbond_W25X40A_0x100000" Name="TFIT_Winbond_W25X40A_0x100000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X40A_0x100000.bin" />
+        <File Id="TFIT_Winbond_W25X40_0x80000" Name="TFIT_Winbond_W25X40_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X40_0x80000.bin" />
+        <File Id="TFIT_Winbond_W25X64_0x800000" Name="TFIT_Winbond_W25X64_0x800000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X64_0x800000.bin" />
+        <File Id="TFIT_Winbond_W25X80A_0x80000" Name="TFIT_Winbond_W25X80A_0x80000.bin"  DiskId="1" Source="..\DediProSetup\Config\TFIT_Winbond_W25X80A_0x80000.bin" />
+        <!-- file list ends ... -->	
+
+        <CreateFolder Directory="CommonDediprogFolder" />
+      </Component>
+    </DirectoryRef>
+
+    <!-- stock firmware files-->
+    <DirectoryRef Id="FirmwareFolder">
+      <Component Id="FirmwareFiles" Guid="{7EB43ABA-FEBD-6DF8-7BD9-4859A44ECA2F}">
+        <File Id="SF100_2.1.1_sector1" Name="SF100-2.1.1-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF100-2.1.1-sector1.bin" />
+        <File Id="SF100_2.1.1_sector2" Name="SF100-2.1.1-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF100-2.1.1-sector2.bin" />
+        <File Id="SF100_3.1.8_sector1" Name="SF100-3.1.8-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF100-3.1.8-sector1.bin" />
+        <File Id="SF100_3.1.8_sector2" Name="SF100-3.1.8-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF100-3.1.8-sector2.bin" />
+        <File Id="SF100N_3.1.7_sector1" Name="SF100N-3.1.7-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF100N-3.1.7-sector1.bin" />
+        <File Id="SF100N_3.1.7_sector2" Name="SF100N-3.1.7-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF100N-3.1.7-sector2.bin" />
+        <File Id="SF200_2.1.1_sector1" Name="SF200-2.1.1-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF200-2.1.1-sector1.bin" />
+        <File Id="SF200_2.1.1_sector2" Name="SF200-2.1.1-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF200-2.1.1-sector2.bin" />
+        <File Id="SF200_3.1.8_sector1" Name="SF200-3.1.8-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF200-3.1.8-sector1.bin" />
+        <File Id="SF200_3.1.8_sector2" Name="SF200-3.1.8-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF200-3.1.8-sector2.bin" />
+        <File Id="SF200N_3.1.7_sector1" Name="SF200N-3.1.7-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF200N-3.1.7-sector1.bin" />
+        <File Id="SF200N_3.1.7_sector2" Name="SF200N-3.1.7-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF200N-3.1.7-sector2.bin" />
+        <File Id="SF300_3.1.8_sector1" Name="SF300-3.1.8-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF300-3.1.8-sector1.bin" />
+        <File Id="SF300_3.1.8_sector2" Name="SF300-3.1.8-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF300-3.1.8-sector2.bin" />
+        <File Id="SF300N_3.1.7_sector1" Name="SF300N-3.1.7-sector1.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF300N-3.1.7-sector1.bin" />
+        <File Id="SF300N_3.1.7_sector2" Name="SF300N-3.1.7-sector2.bin"  DiskId="1" Source="..\DediProSetup\firmware\SF300N-3.1.7-sector2.bin" />
+                
+        </Component>
+
+    </DirectoryRef>
+
+    <DirectoryRef Id="PersonalDediprogFolder">
+      <Component Id="PerUserFiles" Guid="{FF88988C-1DEB-0FA5-90AE-0B0416B1B205}">
+        <RegistryValue Root='HKCU' Key='SOFTWARE\Dediprog\Dedipro'  Type='string' Value='DediPreference' KeyPath="yes" />
+        <File Id="DediPreference_xml" Name="DediPreference.xml" DiskId="1" Source="..\DediProSetup\Config\DediPreference.xml" />
+        <RemoveFolder Id="RemovePerUserDediprogFolder" Directory="PersonalDediprogFolder" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+
+
+    <!-- Step 3: Tell WiX to install the files -->
+    <!-- feature custimization -->
+    <Feature Id="CoreFeature"
+             ConfigurableDirectory="APPLICATIONROOTDIRECTORY"
+             Title="Core Files"
+             Description="Installs GUI and Commandline tools, and chip information database."
+             InstallDefault="local"
+             Absent="disallow"
+             Level="1" >
+
+
+      <ComponentRef Id="DediproOutputs" />
+      <ComponentRef Id="DpCmdOutputs" />
+      <ComponentRef Id="Dependencies" />
+
+      <ComponentRef Id="PerMachineFiles" />
+      <ComponentRef Id="PerUserFiles" />
+
+      <ComponentRef Id="USB_Driver" />
+      <ComponentRef Id="FirmwareFiles" />
+
+    </Feature>
+
+    <!-- documentation -->
+    <Feature Id="DocumentFeature"
+             ConfigurableDirectory="APPLICATIONROOTDIRECTORY"
+             Title="Documenation"
+             Description="Installs Manuals."
+             InstallDefault="local"
+             Level="1">
+      <ComponentRef Id="Documenation" />
+    </Feature>
+
+    <!-- Shortcuts -->
+    <Feature Id="ShortcutFeature"
+             ConfigurableDirectory="APPLICATIONROOTDIRECTORY"
+             Title="Shortcuts to Executables"
+             Description="Create Shortcuts on the desktop and in the start menu."
+             InstallDefault="local"
+             Level="1">
+      <ComponentRef Id="DesktopShortcuts" />
+      <ComponentRef Id="ProgramMenuShortcuts" />
+    </Feature>
+
+    <!-- icons -->
+    <Icon Id="help.ico" SourceFile="..\DediProSetup\icon\help.ico" />
+    <Icon Id="dedipro.ico" SourceFile="..\DediProSetup\icon\dedi.ico" />
+    <Icon Id="cmd.ico" SourceFile="..\DediProSetup\icon\cmd.ico" />
+
+    <!-- UI-->
+    <UIRef Id="WixUI_Minimal"/>
+
+    <!-- Properties -->
+    <Property Id="ARPPRODUCTICON" Value="dedipro.ico" />
+
+    <!-- customization Dialogue-->
+    <WixVariable Id="WixUIBannerBmp" Value="..\DediProSetup\picture\banner.jpg" />
+    <WixVariable Id="WixUIDialogBmp" Value="..\DediProSetup\picture\dialog.jpg" />
+
+    <WixVariable Id="WixUIExclamationIco" Value="..\DediProSetup\icon\Exclamation.ico" />
+    <WixVariable Id="WixUIInfoIco" Value="..\DediProSetup\icon\info.ico" />
+    <WixVariable Id="WixUINewIco" Value="..\DediProSetup\icon\new.ico" />
+    <WixVariable Id="WixUIUpIco" Value="..\DediProSetup\icon\up.ico" />
+
+    <WixVariable Id="WixUILicenseRtf" Value="..\DediProSetup\doc\license.rtf" />
+
+    <Condition Message="This application is only supported on 32-bit Windows OSes.">
+      <![CDATA[Installed OR (NOT VersionNT64)]]>
+    </Condition>
+
+  </Product>
+</Wix>

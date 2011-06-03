@@ -1,0 +1,941 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\DediPro.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\DediPro.ico"
+IDR_DediProTYPE         ICON                    "res\\DediProDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDR_USERTOOLBAR         BITMAP                  "res\\UserToolbar.bmp"
+IDB_SPECIAL_LOGO        BITMAP                  "res\\Special-logo.bmp"
+IDB_ADVCFG              BITMAP                  "res\\AdvCfg.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  24, 24
+BEGIN
+    BUTTON      ID_FILE_NEW
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_USERTOOLBAR TOOLBAR  48, 48
+BEGIN
+    BUTTON      ID_TOOLBUTTON_SELTYPE
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_LOADFILE
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_BLANKCHK
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_ERASE
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_PROG
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_READ
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_VERIFY
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_AUTO
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_HEX
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_ADVCFG
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_DLDCARD
+    SEPARATOR
+    BUTTON      ID_TOOLBUTTON_EEHISTO
+    BUTTON      ID_TOOLBUTTON_STATUS_REGISTER
+    BUTTON      ID_TOOLBUTTON_CARDCONFIG
+    BUTTON      ID_TOOLBUTTON_ENGINEERING_MODE
+    BUTTON      ID_TOOLBUTTON_FREESCALE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Firmware &AutoUpdate",        ID_HELP_FIRMWAREAUTOUPDATE
+        MENUITEM "Firmware &Manual Update(For Experts Only)", ID_HELP_UPDATEFIRMWARE
+        MENUITEM SEPARATOR
+        MENUITEM "&Launch Calculater",          ID_HELP_LAUNCHCALCULATER
+        MENUITEM SEPARATOR
+        MENUITEM "User &Manual",                ID_HELP_USERMANUAL
+        MENUITEM "&About DediPro...",           ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    VK_F1,          ID_HELP_USERMANUAL,     VIRTKEY, NOINVERT
+    VK_F6,          ID_TOOLBUTTON_BLANKCHK, VIRTKEY, NOINVERT
+    VK_F4,          ID_TOOLBUTTON_HEX,      VIRTKEY, NOINVERT
+    VK_F3,          ID_TOOLBUTTON_LOADFILE, VIRTKEY, NOINVERT
+    VK_F9,          ID_TOOLBUTTON_PROG,     VIRTKEY, NOINVERT
+    VK_F8,          ID_TOOLBUTTON_VERIFY,   VIRTKEY, NOINVERT
+    "C",            ID_TOOLBUTTON_ADVCFG,   VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_TOOLBUTTON_AUTO,     VIRTKEY, CONTROL, NOINVERT
+    "B",            ID_TOOLBUTTON_BLANKCHK, VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_TOOLBUTTON_CARDCONFIG, VIRTKEY, CONTROL, NOINVERT
+    "U",            ID_TOOLBUTTON_DLDCARD,  VIRTKEY, CONTROL, NOINVERT
+    "E",            ID_TOOLBUTTON_ERASE,    VIRTKEY, CONTROL, NOINVERT
+    VK_F2,          ID_TOOLBUTTON_ERASE,    VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_TOOLBUTTON_HEX,      VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_TOOLBUTTON_LOADFILE, VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_TOOLBUTTON_PROG,     VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_TOOLBUTTON_SELTYPE,  VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_TOOLBUTTON_VERIFY,   VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 337, 291
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About DediPro"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "DediPro Version 1.0.8",IDC_VER,44,7,141,42,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,277,101,53,16,WS_GROUP
+    ICON            IDR_MAINFRAME,IDC_IMAGE,7,7,20,20,SS_CENTERIMAGE | SS_REALSIZEIMAGE
+    LTEXT           "Static",IDC_COPYWRITE,7,57,323,37
+    LTEXT           "www.dediprog.com",IDC_URL,247,7,83,11
+    LTEXT           "support@dediprog.com",IDC_SUPPORTMAIL,247,20,83,11
+    LTEXT           "Support:",IDC_STATIC,210,20,30,11
+    LTEXT           "Website:",IDC_STATIC,210,7,34,11
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,7,98,323,1
+    LTEXT           "The following Serial Flash series are supported as of this version: ",IDC_STATIC,7,104,234,11
+    CONTROL         "",IDC_LSTSUPPORTED_CHIPS,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,120,323,164
+END
+
+IDD_MAIN_FORM DIALOGEX 0, 0, 637, 335
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Programmer Info",IDC_GRPPARAM,464,55,166,55
+    GROUPBOX        "Memory Info",IDC_GRPINFO,464,112,166,78
+    LTEXT           "Type:",IDC_CHIP_PARAMETER_CAPTION_TYPE,468,124,46,10
+    LTEXT           "Size(KB):",IDC_CHIP_PARAMETER_CAPTION_MSIZE,468,149,46,10
+    LTEXT           "Manufact.:",IDC_CHIP_PARAMETER_CAPTION_MANU,468,137,46,10
+    LTEXT           "Manu. URL:",IDC_CHIP_PARAMETER_CAPTION_MANUURL,520,279,46,10,NOT WS_VISIBLE
+    LTEXT           "JEDEC ID:",IDC_CHIP_PARAMETER_CAPTION_JID,467,175,46,10
+    LTEXT           "Manu. ID:",IDC_CHIP_PARAMETER_CAPTION_MANUID,468,161,46,10
+    LTEXT           "",IDC_LBLTYPE,528,125,97,10
+    LTEXT           "",IDC_LBLMSIZE,528,149,97,10
+    LTEXT           "",IDC_LBLMANU,528,137,97,10
+    LTEXT           "www.c.com",IDC_LBLMANUURL,571,279,48,10,NOT WS_VISIBLE
+    LTEXT           "",IDC_LBLMANUID,528,161,97,10
+    LTEXT           "",IDC_LBLJID,528,175,97,10
+    LTEXT           "Type:",IDC_LBLBOARDTYPE,470,65,46,10
+    LTEXT           "SF100",IDC_LBLBOARDTYPE2,524,65,97,10
+    LTEXT           "VCC Status:",IDC_LBLBOARDVCC,470,88,46,10
+    LTEXT           "POWEROFF",IDC_LBLBOARDVCC2,524,88,97,10
+    LTEXT           "F/W Version:",IDC_LBLFIRMWAREVERSION,470,77,49,10
+    LTEXT           "1.0.0",IDC_LBLFIRMWAREVERSION2,524,77,97,10
+    GROUPBOX        "File Info",IDC_GRPPARAM2,464,194,166,86
+    LTEXT           "Name :",IDC_LBLFILENAME,470,204,36,11
+    LTEXT           "32M",IDC_LBLFILENAME2,528,204,97,8
+    LTEXT           "aa",IDC_LBLFILECHKSUM2,528,229,97,8
+    LTEXT           "Checksum :",IDC_LBLFILECHKSUM,470,229,44,11
+    CONTROL         "",IDC_LOGVIEW,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,7,452,321
+    LTEXT           "Size:",IDC_LBLFILESIZE,470,217,16,8
+    LTEXT           "Static",IDC_LBLFILESIZE2,528,217,97,8
+    GROUPBOX        "Batch Config setting",IDC_GRPBATCHCONFIG,464,283,166,45
+    LTEXT           "Full Chip update",IDC_FULL_UPDATE,528,295,73,8
+    LTEXT           "Partial Update starting from:xxxxxx",IDC_PARTIAL_UPDATE,528,309,73,17
+    CONTROL         154,IDC_UPDATE_OPTION_CHECK,"Static",SS_BITMAP,479,295,9,9
+    LTEXT           "Vpp/Acc:",IDC_LBLVPPACC_ENABLE,470,241,36,8
+    LTEXT           " ",IDC_LBLVPPACC_ENABLE2,536,241,84,8
+    LTEXT           "Target Chip:",IDC_LBLTARGET_CHIP_SIZE,470,267,65,8
+    LTEXT           " ",IDC_LBLTARGET_CHIP_SIZE2,536,267,84,8
+    LTEXT           "SA Operations:",IDC_LBLSA_SEQUENCE,470,254,58,8
+    LTEXT           "",IDC_LBLSA_SEQUENCE2,536,254,84,8
+    CONTROL         157,IDC_LOGO,"Static",SS_BITMAP,481,7,138,42
+    LTEXT           "VPP/Acc:",IDC_LBLBOARDVPP,470,99,46,10
+    LTEXT           "Apply if Supported/OFF",IDC_LBLBOARDVPP2,524,99,97,10
+END
+
+IDR_MAINFRAME DIALOGEX 0, 0, 421, 16
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Update Stand Alone Project",IDC_OPTCARD,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,293,4,117,9
+    CONTROL         "Application Memory Chip 1",IDC_OPTMEM1,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,83,4,93,9
+    LTEXT           "Currently working on:",IDC_PROMPT,0,4,76,12,NOT WS_VISIBLE
+    CONTROL         "Application Memory Chip 2",IDC_OPTMEM2,"Button",BS_AUTORADIOBUTTON,187,4,100,10
+END
+
+IDD_SELECT_MEMORY_TYPE DIALOGEX 0, 0, 360, 158
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,158,134,50,17
+    PUSHBUTTON      "Cancel",IDCANCEL,303,134,50,17
+    GROUPBOX        "Select ",IDC_GRPSEL,7,7,346,123
+    CONTROL         "Automatic Detect (Recommended)",IDC_SELEC_AUTO,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,20,258,10
+    CONTROL         "Manually Select",IDC_SELEC_MANU,"Button",BS_AUTORADIOBUTTON,13,73,62,17
+    LTEXT           "By reading the chip ID, the chip applies to:",IDC_DESCAUTO,24,34,139,12
+    LTEXT           "Manually setect the memory type when you know it.",IDC_DESCMANU,25,98,238,13
+    LTEXT           "CAUTION: A type mismatch may damage the memory chip.",IDC_DESCCAUTI,25,115,244,10
+    COMBOBOX        IDC_MEMTYPLIST,214,75,127,168,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MANUFACTURE,79,75,131,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "Unknown",IDC_IDENTIFIED_TYPE,166,34,180,25
+    LTEXT           "Static",IDC_RAW_RESULTS,25,47,315,21,NOT WS_VISIBLE
+END
+
+IDD_CONFIG_HEX DIALOGEX 0, 0, 624, 419
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "View Contents in the Memory Chip"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Custom1",IDC_GRIDFILE,"MFCGridCtrl",WS_TABSTOP,7,97,611,261
+    CONTROL         " Hex",IDC_OPTHEX,"Button",BS_AUTORADIOBUTTON,548,65,29,16
+    CONTROL         " ASCII",IDC_OPTASCII,"Button",BS_AUTORADIOBUTTON | BS_FLAT,580,65,35,16
+    GROUPBOX        "  Source  ",IDC_STATIC,7,7,422,44
+    LTEXT           "FFFFFFFF",IDC_CRC,54,68,377,8
+    PUSHBUTTON      "Compare File and Chip",IDC_COMPARE,333,397,105,14,NOT WS_VISIBLE
+    LTEXT           "Checksum:",IDC_STATIC,14,68,37,8
+    CTEXT           "File",IDC_FILE,147,85,91,12
+    CTEXT           "Memory",IDC_MEMORY,377,85,91,12
+    GROUPBOX        "",IDC_STATIC,7,54,611,357
+    LTEXT           "File: ",IDC_STATIC,18,20,18,8
+    LTEXT           "Chip:",IDC_STATIC,16,36,18,8
+    LTEXT           "No File Loaded",IDC_FILE_INFO,47,19,322,8
+    LTEXT           "Static",IDC_CHIP_INFO,47,36,322,8
+    PUSHBUTTON      "Open ...",IDC_OPEN,375,14,50,14
+    PUSHBUTTON      "Read ...",IDC_READMEM,376,32,50,14
+    LTEXT           "Show In ",IDC_STATIC,510,69,31,8
+    GROUPBOX        "",IDC_STATIC,434,7,184,44
+    CONTROL         "",IDC_CHIP_PROGRESS,"msctls_progress32",NOT WS_VISIBLE | WS_BORDER,47,34,322,14
+    CONTROL         "",IDC_FILE_PROGRESS,"msctls_progress32",NOT WS_VISIBLE | WS_BORDER,47,15,322,14
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,13,82,596,1,WS_EX_DLGMODALFRAME
+    PUSHBUTTON      " Next Difference",IDC_NEXTDIFF,18,368,185,15
+    EDITTEXT        IDC_ROWJUMP,82,387,61,14,ES_AUTOHSCROLL
+    LTEXT           "Address (Hex)",IDC_STATIC,19,391,50,8
+    PUSHBUTTON      "Go!",IDC_JUMPTO,157,387,45,14
+    GROUPBOX        " Jump To ",IDC_STATIC,11,359,199,45
+    GROUPBOX        "",IDC_STATIC,214,359,400,45
+    PUSHBUTTON      "File Buffer to File",IDC_FILEBUFF2FILE,450,14,159,16
+    PUSHBUTTON      "File Buffer to Chip",IDC_FILEBUFF2CHIP,534,14,76,16,NOT WS_VISIBLE
+    PUSHBUTTON      "Chip Buffer to File",IDC_CHIPBUFF2FILE,450,31,159,16
+    PUSHBUTTON      "Chip Buffer to Chip",IDC_CHIPBUFF2CHIP,534,31,76,16,NOT WS_VISIBLE
+    LTEXT           "A recent operation has change the source of file buffer, you may need to reload the file to see the changes",IDC_WARNING_RELOAD_FILE,229,371,346,8,NOT WS_VISIBLE
+    LTEXT           "A recent operation has change the source of chip buffer, you may need to re-read the chip to see the changes",IDC_WARNING_RELOAD_CHIP,229,384,356,8,NOT WS_VISIBLE
+END
+
+IDD_COMPARE_LOG DIALOGEX 0, 0, 229, 246
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Compare File and Memory"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_LIST,7,22,215,188,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,66,217,96,22
+    LTEXT           "",IDC_TIMING,7,6,215,12
+END
+
+IDD_CONFIG_FLASHCARD_SETTING DIALOGEX 0, 0, 330, 249
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Standalone Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Save",IDOK,129,218,76,24
+    COMBOBOX        IDC_CBOSIZELST,15,23,298,127,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         " Blank Check",IDC_CHKBLANKCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,76,56,10
+    CONTROL         " Erase",IDC_CHKERASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,99,36,10
+    CONTROL         " Program",IDC_CHKPROG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,122,45,10
+    CONTROL         " Verify",IDC_CHKVERIFY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,145,37,10
+    CONTROL         " Protect",IDC_CHKPROTECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,168,41,10
+    GROUPBOX        "Please specify the chip density(in the socket adaptor) which flash card will copy the content to:",IDC_STATIC,7,7,316,47
+    GROUPBOX        " Please specify the operation sequences during the standalone mode: ",IDC_STATIC,7,57,316,130
+    CONTROL         " Enable Vpp/Acc( if applicable)",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,197,112,10
+    PUSHBUTTON      "Cancel",IDCANCEL,247,218,76,24
+END
+
+IDD_EEPROM_HISTORY DIALOGEX 0, 0, 269, 105
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Operation Statistics"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,212,84,50,14
+    PUSHBUTTON      "Reset",IDC_BTNRESET,7,84,50,14
+    LTEXT           "Success:",IDC_STATIC,19,22,29,8
+    GROUPBOX        " Operation Counter ",IDC_STATIC,7,7,255,73
+    LTEXT           "Erase Error:",IDC_STATIC,19,36,40,8
+    LTEXT           "Program Error:",IDC_STATIC,19,50,48,8
+    LTEXT           "Verify Error:",IDC_STATIC,19,64,40,8
+    LTEXT           "0",IDC_CNTSUCCESS,97,22,87,8
+    LTEXT           "0",IDC_CNTERRERASE,97,36,87,8
+    LTEXT           "0",IDC_CNTERRPROG,97,50,87,8
+    LTEXT           "0",IDC_CNTERRVERIFY,97,64,87,8
+END
+
+IDD_CONFIG_STANDALONE_BOARD DIALOGEX 0, 0, 472, 278
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Configure SA operation settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,273,253,50,18
+    PUSHBUTTON      "Cancel",IDCANCEL,415,253,50,18
+    GROUPBOX        " Select Standalone Operations: ",IDC_STATIC,261,7,204,82
+    CONTROL         " Erase + Program + Verify",IDC_SA_EPV,"Button",BS_AUTORADIOBUTTON,270,26,100,10
+    CONTROL         " BlankCheck (Erase if not blank) + Program + Verify",IDC_SA_BEPV,
+                    "Button",BS_AUTORADIOBUTTON,270,47,181,10
+    CONTROL         " Program + Verify",IDC_SA_PV,"Button",BS_AUTORADIOBUTTON,270,68,73,10
+    GROUPBOX        " Select target chip type: ",IDC_STATIC,114,7,132,264
+    CONTROL         " Enable Vpp/Acc if applicable",IDC_ENABLE_VPP_ACC,
+                    "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,270,125,107,10
+    LISTBOX         IDC_TYPELIST,121,17,115,248,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_FILTERLIST,15,17,82,248,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        " Select Filter: ",IDC_STATIC,7,7,98,264
+END
+
+IDD_CONFIG_ENGINEERING_MODE DIALOGEX 0, 0, 438, 313
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Engineering Mode"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_OUT,81,20,76,14,ES_UPPERCASE | ES_AUTOHSCROLL
+    PUSHBUTTON      "Send",IDC_SEND,8,79,61,18
+    EDITTEXT        IDC_BYTECOUNT,81,38,76,14,ES_CENTER | ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "bytes.",IDC_STATIC,161,41,22,8
+    LTEXT           "(example: 03 ff 00 12), ",IDC_STATIC,161,24,96,8
+    GROUPBOX        " To Memory ",IDC_STATIC,7,7,426,67
+    GROUPBOX        " From Memory ",IDC_STATIC,7,102,426,204
+    CONTROL         " Need to return ",IDC_NEEDRETURN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,41,61,10
+    LTEXT           "Send byte stream:",IDC_STATIC,15,24,62,8
+    LTEXT           "N/A",IDC_IN,16,125,410,148
+    LTEXT           "5 s after the instructionCurrent SR",IDC_SR,15,114,164,8
+    CONTROL         " Monitor SR for",IDC_NEEDMONITOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,58,61,10
+    EDITTEXT        IDC_SECONDS,81,56,76,14,ES_CENTER | ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Warning:",IDC_ENGMODE_WARNING,11,284,418,22
+    LTEXT           " second after sending the instruction.",IDC_STATIC,161,58,121,8
+END
+
+IDD_MEMORY_DETECTION DIALOGEX 0, 0, 291, 259
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Manually Select Memory Type"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,163,238,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,234,238,50,14
+    GROUPBOX        "",IDC_STATIC,7,7,277,215
+    LISTBOX         IDC_CHIP_LIST,159,30,125,180,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Filters:",IDC_STATIC,13,15,23,8
+    LTEXT           "Memory List:",IDC_STATIC,160,15,42,8
+    CONTROL         "",IDC_MANU,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,14,29,129,183
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION  4, 5, 74, 4060
+ PRODUCTVERSION 4,5,0,0
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Dediprog Inc."
+            VALUE "FileDescription", "DediPro Programmer"
+            VALUE "FileVersion",  "4, 5, 74, 4060\0"
+            VALUE "InternalName", "DediPro.exe"
+            VALUE "LegalCopyright", "Copyright 2005-2008 (c) Dediprog Inc.  "
+            VALUE "LegalTrademarks", "All rights reserved."
+            VALUE "OriginalFilename", "DediPro.exe"
+            VALUE "ProductName", "DediPro Programmer"
+            VALUE "ProductVersion", "4, 5, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 330
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 284
+    END
+
+    IDD_MAIN_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 630
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 328
+    END
+
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        RIGHTMARGIN, 410
+    END
+
+    IDD_SELECT_MEMORY_TYPE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 353
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 151
+    END
+
+    IDD_CONFIG_HEX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 618
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 411
+    END
+
+    IDD_COMPARE_LOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 222
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 239
+    END
+
+    IDD_CONFIG_FLASHCARD_SETTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 323
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 242
+    END
+
+    IDD_EEPROM_HISTORY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 262
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 98
+    END
+
+    IDD_CONFIG_STANDALONE_BOARD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 465
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 271
+    END
+
+    IDD_CONFIG_ENGINEERING_MODE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 306
+    END
+
+    IDD_MEMORY_DETECTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 284
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 252
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "DediPro\n\nDediPro\n\n\nDediPro.Document\nDediPro.Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "DediPro"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLBUTTON_BLANKCHK  "Check whether the memory is blank(i.e. 0xFF)"
+    ID_TOOLBUTTON_ERASE     "Erase the whole memory"
+    ID_TOOLBUTTON_READ      "Read From the Memory"
+    ID_TOOLBUTTON_PROG      "Download file into the memory"
+    ID_TOOLBUTTON_VERIFY    "Read from the Memory and Check the CRC"
+    ID_TOOLBUTTON_AUTO      "Automatically Blank Check, Download and Verify."
+    ID_TOOLBUTTON_HEX       "Hex Edit"
+    ID_TOOLBUTTON_SELTYPE   "Select Memory Type\nSelect Memory"
+    ID_TOOLBUTTON_LOADFILE  "Select File to be downloaded"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBAR_DRAW        BITMAP                  "res\\ToolbarDraw.bmp"
+IDB_TOOLBAR_DRAW_DISABLED BITMAP                  "res\\ToolbarDrawDisabled.bmp"
+IDB_TOOLBAR_DRAW_HOT    BITMAP                  "res\\ToolbarDrawHot.bmp"
+IDB_LEGEND              BITMAP                  "res\\lengend.bmp"
+IDB_POINT               BITMAP                  "res\\point.bmp"
+IDB_NUMONYX_LOGO        BITMAP                  "res\\Numonyx-logo.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU_PROG MENU 
+BEGIN
+    POPUP "pROG"
+    BEGIN
+        MENUITEM "More Options ...",            ID_PROG_MOREOPTIONS
+    END
+END
+
+IDR_MENU_AUTO MENU 
+BEGIN
+    POPUP "AUTO"
+    BEGIN
+        MENUITEM "More Options ...",            ID_AUTO_MOREOPTIONS
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONFIG_LOAD_FILE DIALOGEX 0, 0, 345, 97
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Load File"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,139,71,62,19
+    PUSHBUTTON      "Cancel",IDCANCEL,276,71,62,19
+    GROUPBOX        " Program as ",IDC_LBLFILECHKSUM2,8,27,330,38
+    LTEXT           "Data Format:",IDC_STATIC,14,43,44,8
+    CONTROL         "Raw Binary",IDC_FORMAT_RAWBIN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,70,43,52,10
+    CONTROL         "Intel Hex",IDC_FORMAT_INTELHEX,"Button",BS_AUTORADIOBUTTON,135,43,45,10
+    CONTROL         "Motorola S19",IDC_FORMAT_MOTOS19,"Button",BS_AUTORADIOBUTTON,198,43,65,10
+    CONTROL         "ROM",IDC_FORMAT_ROM,"Button",BS_AUTORADIOBUTTON,271,45,31,10
+    LTEXT           "File Path:",IDC_STATIC,14,10,31,8
+    PUSHBUTTON      "Find",IDC_FIND,288,7,50,14
+    COMBOBOX        CBO_FILEFAPTH,48,7,238,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CONFIG_BATCH DIALOGEX 0, 0, 438, 313
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Batch Operations"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        " Batch Operation Options ",IDC_STATIC,7,7,424,108
+    CONTROL         "  Download a whole file to chip (With Blank Check), Fill Unused Space with(Hex):",IDC_OPTPRESET_DOWNLOAD_WHOLE_FILE,
+                    "Button",BS_AUTORADIOBUTTON,19,24,276,10
+    CONTROL         "  Update a specific location of the chip (other locations are kept unchanged), starting from (Hex)",IDC_OPTPRESET_DOWNLOAD_PARTIAL_FILE,
+                    "Button",BS_AUTORADIOBUTTON,19,61,324,10
+    CONTROL         " Custom",IDC_OPTPRESET_CUSTOM,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE | WS_DISABLED,373,22,42,10
+    LTEXT           "Sequences Details (Read Only) ",IDC_STATIC,16,160,102,8
+    CONTROL         "",IDC_LST_SEQUENCES,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,16,174,407,80
+    CONTROL         " Require Verification after completion",IDC_CHKVERIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,97,134,10
+    CONTROL         "",IDC_LST_FILES,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,16,131,407,15
+    CONTROL         " Reload file each time",IDC_CHKRELOAD_FILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,82,84,10
+    CONTROL         "  Download a whole file to chip (Without Blank Check), Fill Unused Space with(Hex):",IDC_OPTPRESET_DOWNLOAD_WHOLE_FILE_WITHOUT_BLANKCHECK,
+                    "Button",BS_AUTORADIOBUTTON,19,41,277,10
+    CONTROL         " 00",IDC_CHK_FILL_WITH_00_NO_BLKCHK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,301,41,26,10
+    CONTROL         " 00",IDC_CHK_FILL_WITH_00_FOR_BLKCHK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,301,25,26,10
+    GROUPBOX        "",IDC_STATIC,7,118,424,144
+    EDITTEXT        IDC_BATCH_ADDR_FROM,347,59,61,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+END
+
+IDD_CONFIG_PROG DIALOGEX 0, 0, 438, 313
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Program Configuration"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        " Program Options: ",IDC_STATIC,7,7,426,301
+    CONTROL         " Program a whole file starting from address 0 of a chip",IDC_OPTION_WHOLECHIP,
+                    "Button",BS_AUTORADIOBUTTON,18,17,189,10
+    CONTROL         " Program at specific address of a chip",IDC_OPTION_PARTIALCHIP,
+                    "Button",BS_AUTORADIOBUTTON,18,45,135,10
+    LTEXT           "Starting Address(Hex):",IDC_STATIC,30,63,75,8
+    LTEXT           "Length(Hex):",IDC_STATIC,18,90,47,8,NOT WS_VISIBLE
+    EDITTEXT        IDC_ADDR_FROM,134,61,93,14,ES_UPPERCASE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_LENGTH,70,87,156,14,ES_UPPERCASE | ES_AUTOHSCROLL | NOT WS_VISIBLE
+    LTEXT           "Fill Unused Space with(Hex):",IDC_PADPROMPT,32,30,92,8
+    LTEXT           "NOTE: Progamming must be appplied to a blank(i.e. erased) area.",IDC_NOTE,16,252,411,48
+    LTEXT           "(default to current size of the selected file if left blank)",IDC_STATIC,70,106,179,11,NOT WS_VISIBLE
+    CONTROL         " 00",IDC_CHKFILL_WITH_00,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,137,31,26,10
+END
+
+IDD_TYPE_AMBIGUITY DIALOGEX 0, 0, 218, 142
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Memory Type Ambiguity"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,82,117,56,18
+    LISTBOX         IDC_LSTTYPE,7,20,204,88,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "By reading the chip ID, the chip applies to:",IDC_STATIC,7,7,174,8
+END
+
+IDD_CONFIG_SR DIALOGEX 0, 0, 438, 313
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Modify Status Register "
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Current Value(Hex):",IDC_STATIC,16,18,67,9
+    LTEXT           "New Value(Hex):",IDC_STATIC,122,17,55,8
+    CTEXT           "unavailable",IDC_VALUE_CURRENT,16,30,58,14
+    PUSHBUTTON      "Read Again",IDC_REFRESH,16,57,58,18
+    EDITTEXT        IDC_NEW_VALUE,122,30,55,14,ES_CENTER | ES_UPPERCASE | ES_AUTOHSCROLL
+    PUSHBUTTON      "Write to Flash",IDC_WRITE_NEW_VALUE,122,57,58,18
+    GROUPBOX        "",IDC_STATIC,7,7,94,82
+    GROUPBOX        "",IDC_STATIC,111,7,94,82
+END
+
+IDD_CONFIG_MISC DIALOGEX 0, 0, 438, 313
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Miscellaneous Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         " Apply Vpp for program and erase when the memory supports it. ",IDC_CHK_VPP,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,23,22,224,10
+    GROUPBOX        " Vpp Option:  ",IDC_STATIC,7,7,426,39
+    GROUPBOX        " Vcc Option:  ",IDC_STATIC,8,52,426,50
+    CONTROL         " 3.5V",IDC_VCC3_5,"Button",BS_AUTORADIOBUTTON | WS_GROUP,23,65,33,10
+    CONTROL         " 1.8V",IDC_VCC1_8,"Button",BS_AUTORADIOBUTTON,23,82,33,10
+END
+
+IDD_CONFIG_FREESCALE DIALOGEX 0, 0, 438, 313
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Freescale Specific Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    RTEXT           "THIS IS AN EXPERIMENTAL FEATURE UNDER TEST.",IDC_STATIC,241,285,167,8
+    EDITTEXT        IDC_CONFIG_REGISTER,125,7,54,14,ES_AUTOHSCROLL
+    LTEXT           "Set Config Register Value(Hex):",IDC_STATIC,7,7,109,13
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CONFIG_LOAD_FILE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 338
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 90
+    END
+
+    IDD_CONFIG_BATCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 431
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 306
+    END
+
+    IDD_CONFIG_PROG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 308
+    END
+
+    IDD_TYPE_AMBIGUITY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 135
+    END
+
+    IDD_CONFIG_SR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 205
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_CONFIG_MISC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 434
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 309
+    END
+
+    IDD_CONFIG_FREESCALE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 429
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 307
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\DediPro.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

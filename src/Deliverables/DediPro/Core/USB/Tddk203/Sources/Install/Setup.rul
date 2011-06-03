@@ -1,0 +1,404 @@
+
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            
+//  File Name:	Setup.rul                                                   
+//                                                                            
+//  Description:	InstallShield script                                        
+//                                                                            
+//  Comments:	This script was generated based on the selections you made in
+//           	the Project Wizard.  Refer to the help topic entitled "Modify      
+//           	the script that the Project Wizard generates" for information
+//				on possible next steps.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+
+// Include header files
+    
+#include "ifx.h"
+    
+////////////////////// string defines ////////////////////////////
+#define DRVINSTALLDLLNAME				DrvInstallDLL
+#define _DRVINSTALLDLL					"DrvInstallDLL.dll"
+
+#define DEMOKIT_HARDWARE_ID				"USB\\Vid_0483&Pid_9912"
+#define DEMOKIT_HARDWARE_ID_COMPOSITE	"USB\\Vid_0483&Pid_9912&MI_01"
+#define INF_PROVIDER					"STMicroelectronics"
+
+#define GUID_DEMOKIT_USAGE              "{6AA3836E-0B26-47d6-80A4-94137A68E36A}"
+#define USBDEMONSTRATOR_INF				"UsbDemonstrator.inf"
+
+//////////////////// installation declarations ///////////////////
+  
+// ----- DLL function prototypes -----
+
+//DrvInstallDLL - Exported helper functions
+#define PRESENT_DEVICES_ONLY	1
+#define ALL_DEVICES				0
+
+#define SPDRP_DEVICEDESC                  (0x00000000)  // DeviceDesc (R/W)
+#define SPDRP_HARDWAREID                  (0x00000001)  // HardwareID (R/W)
+#define SPDRP_COMPATIBLEIDS               (0x00000002)  // CompatibleIDs (R/W)
+#define SPDRP_SERVICE                     (0x00000004)  // Service (R/W)
+#define SPDRP_CLASS                       (0x00000007)  // Class (R--tied to ClassGUID)
+#define SPDRP_CLASSGUID                   (0x00000008)  // ClassGUID (R/W)
+#define SPDRP_DRIVER                      (0x00000009)  // Driver (R/W)
+#define SPDRP_CONFIGFLAGS                 (0x0000000A)  // ConfigFlags (R/W)
+#define SPDRP_MFG                         (0x0000000B)  // Mfg (R/W)
+#define SPDRP_FRIENDLYNAME                (0x0000000C)  // FriendlyName (R/W)
+#define SPDRP_LOCATION_INFORMATION        (0x0000000D)  // LocationInformation (R/W)
+#define SPDRP_PHYSICAL_DEVICE_OBJECT_NAME (0x0000000E)  // PhysicalDeviceObjectName (R)
+#define SPDRP_CAPABILITIES                (0x0000000F)  // Capabilities (R)
+#define SPDRP_UI_NUMBER                   (0x00000010)  // UiNumber (R)
+#define SPDRP_UPPERFILTERS                (0x00000011)  // UpperFilters (R/W)
+#define SPDRP_LOWERFILTERS                (0x00000012)  // LowerFilters (R/W)
+#define SPDRP_BUSTYPEGUID                 (0x00000013)  // BusTypeGUID (R)
+#define SPDRP_LEGACYBUSTYPE               (0x00000014)  // LegacyBusType (R)
+#define SPDRP_BUSNUMBER                   (0x00000015)  // BusNumber (R)
+#define SPDRP_ENUMERATOR_NAME             (0x00000016)  // Enumerator Name (R)
+#define SPDRP_SECURITY                    (0x00000017)  // Security (R/W, binary form)
+#define SPDRP_SECURITY_SDS                (0x00000018)  // Security (W, SDS form)
+#define SPDRP_DEVTYPE                     (0x00000019)  // Device Type (R/W)
+#define SPDRP_EXCLUSIVE                   (0x0000001A)  // Device is exclusive-access (R/W)
+#define SPDRP_CHARACTERISTICS             (0x0000001B)  // Device Characteristics (R/W)
+#define SPDRP_ADDRESS                     (0x0000001C)  // Device Address (R)
+#define SPDRP_UI_NUMBER_DESC_FORMAT       (0X0000001E)  // UiNumberDescFormat (R/W)
+#define CUSTOM_SPDRP_GETREGISTRYDEVICEPATH	0x1000
+#define CUSTOM_SPDRP_GETDEVICEID			0x1001
+
+// Faked GUID structure
+typedef GUID
+begin
+    NUMBER Data1;
+    NUMBER Data2andData3;
+    NUMBER Data4Low;
+    NUMBER Data4High;
+end;
+
+typedef SP_DEVINFO_DATA 
+begin
+    NUMBER cbSize;
+    GUID  ClassGuid;
+    NUMBER DevInst;
+    NUMBER Reserved;
+end;
+
+prototype cdecl DRVINSTALLDLLNAME.CreateDeviceSet(POINTER, BYREF NUMBER, NUMBER);
+prototype cdecl DRVINSTALLDLLNAME.CreateDeviceSetFromInterface(POINTER, BYREF NUMBER, NUMBER);
+prototype cdecl DRVINSTALLDLLNAME.DestroyDeviceSet(NUMBER);
+prototype cdecl DRVINSTALLDLLNAME.GetDevicesList(NUMBER,BYREF NUMBER,POINTER,BYREF BOOL);
+prototype cdecl DRVINSTALLDLLNAME.GetDevicesListByServiceName(NUMBER,BYVAL STRING,BYREF NUMBER, 
+													POINTER,BYREF BOOL);
+prototype cdecl DRVINSTALLDLLNAME.GetDevicesListByHardwareID(NUMBER,BYVAL STRING,BOOL,BYREF NUMBER,
+												   POINTER,BYREF BOOL);
+prototype cdecl DRVINSTALLDLLNAME.GetDeviceInformationSize(NUMBER,POINTER,NUMBER,
+												 BYREF NUMBER);
+prototype cdecl DRVINSTALLDLLNAME.GetDeviceInformation(NUMBER,POINTER,NUMBER,
+											 BYREF STRING,NUMBER);
+prototype cdecl DRVINSTALLDLLNAME.RemoveDevice(NUMBER,POINTER);
+prototype cdecl DRVINSTALLDLLNAME.RemoveInterface(NUMBER,POINTER,
+										BYVAL STRING);
+prototype cdecl DRVINSTALLDLLNAME.RemoveDeviceOEMInf(NUMBER,POINTER, 
+										   BYVAL STRING);
+prototype cdecl DRVINSTALLDLLNAME.RemoveOEMInfsCompatibleWithHardwareID(BYVAL STRING,
+															  BYVAL STRING);
+prototype cdecl DRVINSTALLDLLNAME.UpdateDevice(BYVAL STRING,BYVAL STRING,BYREF BOOL);
+prototype cdecl DRVINSTALLDLLNAME.ForceReEnumeration(BOOL);
+prototype cdecl DRVINSTALLDLLNAME.InstallDevice(BYVAL STRING);
+
+// ----- Local functions prototypes -----
+prototype InstallDriver();
+prototype UninstallDriver();
+prototype ReEnumerateDrivers(BOOL);
+
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           
+//  FUNCTION:   UninstallDriver
+//  			Must be called before uninstallation                                            
+//                                                                           
+//////////////////////////////////////////////////////////////////////////////
+function UninstallDriver()
+	NUMBER i;
+	NUMBER USBDeviceInfoSet;
+	SP_DEVINFO_DATA DevHandle;
+	BOOL bPlugged;
+begin
+	UseDLL(SUPPORTDIR ^ _DRVINSTALLDLL);
+
+	USBDeviceInfoSet=INVALID_HANDLE_VALUE;
+
+	CreateDeviceSet(NULL, USBDeviceInfoSet, FALSE); // The device was maybe enumerated under another enumeroator (Typically: the UNKNOWN one)
+												    // So let's consider all devices
+	if (USBDeviceInfoSet!=INVALID_HANDLE_VALUE) then
+		i=0;
+		while (GetDevicesListByHardwareID(USBDeviceInfoSet, DEMOKIT_HARDWARE_ID, FALSE, i, &DevHandle, bPlugged)=ERROR_SUCCESS)
+		    // Fire the device !
+			RemoveInterface(USBDeviceInfoSet, &DevHandle, GUID_DEMOKIT_USAGE);
+			RemoveDeviceOEMInf(USBDeviceInfoSet, &DevHandle, INF_PROVIDER);
+			RemoveDevice(USBDeviceInfoSet, &DevHandle);
+
+			i=i+1;
+		endwhile;
+	endif;
+	if (USBDeviceInfoSet!=INVALID_HANDLE_VALUE) then
+		DestroyDeviceSet(USBDeviceInfoSet);
+	endif;
+
+	RemoveOEMInfsCompatibleWithHardwareID(DEMOKIT_HARDWARE_ID, INF_PROVIDER);
+	RemoveOEMInfsCompatibleWithHardwareID(DEMOKIT_HARDWARE_ID_COMPOSITE, INF_PROVIDER);
+	UnUseDLL(SUPPORTDIR ^ _DRVINSTALLDLL);
+	
+	return 0;
+end;
+
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           
+//  FUNCTION:   InstallDriver
+//  			Must be called after installation                                            
+//                                                                           
+//////////////////////////////////////////////////////////////////////////////
+function InstallDriver()
+	NUMBER i;
+	NUMBER USBDeviceInfoSet;
+	SP_DEVINFO_DATA DevHandle;
+	BOOL bPlugged;
+	BOOL bFoundPluggedOne;
+	NUMBER nvResult;
+	STRING svResult;
+begin
+	GetSystemInfo (OS, nvResult, svResult);
+
+	UseDLL(SUPPORTDIR ^ _DRVINSTALLDLL);
+    
+    // Check if some devices with our Hardware ID are plugged 
+	USBDeviceInfoSet=INVALID_HANDLE_VALUE;
+
+	CreateDeviceSet(NULL, USBDeviceInfoSet, FALSE); // The device was maybe enumerated under another enumeroator (Typically: the UNKNOWN one)
+												    // So let's consider all devices
+	if (USBDeviceInfoSet!=INVALID_HANDLE_VALUE) then
+		i=0;
+		while (GetDevicesListByHardwareID(USBDeviceInfoSet, DEMOKIT_HARDWARE_ID, FALSE, i, &DevHandle, bPlugged)=ERROR_SUCCESS)
+		 	// Under 98, UpdateDevice won't work so force the usage of ForceReenumeration
+        	if (nvResult=IS_WINDOWSNT) && (bPlugged) then
+		 	 	// Found one, but it is plugged: will be updated later.
+		 		bFoundPluggedOne=TRUE;
+		 	else
+		    	// Fire the device !
+				RemoveInterface(USBDeviceInfoSet, &DevHandle, GUID_DEMOKIT_USAGE);
+				RemoveDeviceOEMInf(USBDeviceInfoSet, &DevHandle, INF_PROVIDER);
+				RemoveDevice(USBDeviceInfoSet, &DevHandle);
+			
+				RemoveOEMInfsCompatibleWithHardwareID(DEMOKIT_HARDWARE_ID, INF_PROVIDER);
+				RemoveOEMInfsCompatibleWithHardwareID(DEMOKIT_HARDWARE_ID_COMPOSITE, INF_PROVIDER);
+			endif;
+
+			i=i+1;
+		endwhile;
+	endif;
+	if (USBDeviceInfoSet!=INVALID_HANDLE_VALUE) then
+		DestroyDeviceSet(USBDeviceInfoSet);
+	endif;
+ 
+ 	if (!bFoundPluggedOne) then
+		InstallDevice(INSTALLDIR ^ USBDEMONSTRATOR_INF);
+ 	endif;
+ 	
+	UnUseDLL(SUPPORTDIR ^ _DRVINSTALLDLL);
+	 
+	return bFoundPluggedOne;
+end;
+
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           
+//  FUNCTION:   ReEnumerateDrivers
+//  			To be called to update current system
+//                                                                           
+//////////////////////////////////////////////////////////////////////////////
+function ReEnumerateDrivers(UpdatePlugged)
+	BOOL bNeedsReboot;
+begin
+	bNeedsReboot=FALSE;
+	UseDLL(SUPPORTDIR ^ _DRVINSTALLDLL);
+    if (UpdatePlugged) then
+		UpdateDevice(DEMOKIT_HARDWARE_ID_COMPOSITE, INSTALLDIR ^ USBDEMONSTRATOR_INF, bNeedsReboot);
+	else
+		ForceReEnumeration(TRUE);
+	endif;
+	UnUseDLL(SUPPORTDIR ^ _DRVINSTALLDLL);
+	return bNeedsReboot;
+end;
+
+//////////////////////////////////////////////////////////////////////////////
+//                                                                           
+//  FUNCTION:   OnFirstUIBefore                                            
+//                                                                           
+//  EVENT:      FirstUIBefore event is sent when installation is run for the first
+//              time on given machine. In the handler installation usually displays
+//              UI allowing end user to specify installation parameters. After this
+//              function returns, FeatureTransferData is called to perform file
+//              transfer.
+//                                                                           
+///////////////////////////////////////////////////////////////////////////////
+function OnFirstUIBefore()
+    number  nResult,nSetupType;
+    string  szTitle, szMsg;
+    string  szDir;
+    string  szfolder;
+    LIST    listStartCopy;
+begin	           
+    SHELL_OBJECT_FOLDER = @PRODUCT_NAME;
+    
+    INSTALLDIR = PROGRAMFILES ^ "STM" ^ @PRODUCT_NAME;
+    szDir = INSTALLDIR;
+
+Dlg_Start:
+    // beginning of dialogs label
+
+Dlg_SdWelcome:
+    szTitle = "";
+    szMsg   = "";
+    nResult = SdWelcome( szTitle, szMsg );
+    if (nResult = BACK) goto Dlg_Start;
+
+Dlg_SdAskDestPath:
+    szTitle = "";
+    szMsg   = "";
+    nResult = SdAskDestPath( szTitle, szMsg, szDir, 0 );
+    INSTALLDIR = szDir;
+    if (nResult = BACK) goto Dlg_SdWelcome;
+
+Dlg_SdSelectFolder:
+    szfolder = SHELL_OBJECT_FOLDER; 
+    szTitle    = "";
+    szMsg      = "";
+    nResult    = SdSelectFolder( szTitle, szMsg, szfolder );
+    SHELL_OBJECT_FOLDER = szfolder;
+    if (nResult = BACK) goto Dlg_SdAskDestPath;
+  
+Dlg_SdStartCopy:
+    szTitle = "";
+    szMsg   = "";
+    listStartCopy = ListCreate( STRINGLIST );
+    ListAddString(listStartCopy, "- USB Demonstrator Application", AFTER);
+    ListAddString(listStartCopy, "- ST Tube Driver for Custom Bulk Demonstration", AFTER);
+   	ListAddString(listStartCopy, "- HID Dll version checking", AFTER);
+    
+    nResult = SdStartCopy( szTitle, szMsg, listStartCopy );	
+    ListDestroy(listStartCopy);
+    if (nResult = BACK) goto Dlg_SdSelectFolder;
+
+    Enable(STATUSEX);
+
+    return 0;
+end;
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//  FUNCTION:   OnMoved
+//
+//  EVENT:      Moving event is sent just before the InstallShield action 
+//              GeneratedMSIScript is executed.
+//
+///////////////////////////////////////////////////////////////////////////////
+function OnMoved()
+	BOOL bTmp;
+begin
+	if (!MAINTENANCE) then
+		bTmp=InstallDriver();        
+		BATCH_INSTALL=ReEnumerateDrivers(bTmp);
+    endif;
+end;
+
+///////////////////////////////////////////////////////////////////////////////
+//
+//  FUNCTION:   OnFirstUIAfter
+//
+//  EVENT:      FirstUIAfter event is sent after file transfer, when installation 
+//              is run for the first time on given machine. In this event handler 
+//              installation usually displays UI that will inform end user that
+//              installation has been completed successfully.
+//
+///////////////////////////////////////////////////////////////////////////////
+function OnFirstUIAfter()
+	STRING szTitle, szMsg1, szMsg2, szOption1, szOption2;
+	NUMBER bOpt1, bOpt2;
+	STRING szCmdLine;
+begin
+	Disable(STATUSEX);
+
+    szCmdLine=INSTALLDIR ^ "USBDemonstrator.exe";
+    LongPathToQuote(szCmdLine, TRUE);
+    CreateProgramFolder(SHELL_OBJECT_FOLDER);
+    AddFolderIcon(SHELL_OBJECT_FOLDER,
+                  "USB Demonstration",
+                  szCmdLine,
+                  TARGETDIR, "", 0, "", REPLACE);
+ 
+	bOpt1  = FALSE;
+	bOpt2  = FALSE;
+	szMsg1 = SdLoadString(IFX_SDFINISH_MSG1);
+	SdFinishEx(szTitle, szMsg1, szMsg2, szOption1, szOption2, bOpt1, bOpt2);
+end;
+
+///////////////////////////////////////////////////////////////////////////////
+//
+//  FUNCTION:   OnMaintUIBefore
+//
+//  EVENT:      MaintUIBefore event is sent when end user runs installation that
+//              has already been installed on the machine. Usually this happens 
+//              through Add/Remove Programs applet. In the handler, installation 
+//              usually displays UI allowing end user to modify existing installation
+//              or uninstall application. After this function returns, 
+//              FeatureTransferData is called to perform file transfer.
+//
+///////////////////////////////////////////////////////////////////////////////
+function OnMaintUIBefore()
+    NUMBER nResult, nType;
+    STRING szTitle, szMsg, svDir, svResult, szCaption;
+begin
+
+Dlg_Start:
+    Disable(BACKBUTTON);
+    nType = SdWelcomeMaint(szTitle, szMsg, MODIFY);
+    Enable(BACKBUTTON);
+
+    if (nType = REMOVEALL) then
+        svResult = SdLoadString(IFX_MAINTUI_MSG);
+        szCaption = SdLoadString(IFX_ONMAINTUI_CAPTION);
+        nResult = SprintfBox(MB_OKCANCEL,szCaption,"%s",svResult);
+        if (nResult = IDCANCEL) goto Dlg_Start;
+    endif;
+
+    nResult = NEXT;
+
+Dlg_SdFeatureTree:
+    if (nType = MODIFY) then
+        szTitle = "";
+        szMsg = "";
+        nResult = SdFeatureTree(szTitle, szMsg, TARGETDIR, "", 2);
+        if (nResult = BACK) goto Dlg_Start;
+    endif;
+
+    switch(nType)
+        case REMOVEALL: ComponentRemoveAll();
+        case REPAIR:    ComponentReinstall();
+    endswitch;
+    
+    Enable(STATUSEX);
+end;
+
+///////////////////////////////////////////////////////////////////////////////
+//
+//  FUNCTION:   OnMoving
+//
+//  EVENT:      Moving event is sent just after the standard MSI action
+//              InstallInitialize is executed.
+//
+///////////////////////////////////////////////////////////////////////////////
+function OnMoving()
+begin
+	if (MAINTENANCE) then
+ 		UninstallDriver();      
+    endif;
+end;
+
